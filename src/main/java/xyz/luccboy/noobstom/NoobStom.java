@@ -1,5 +1,6 @@
 package xyz.luccboy.noobstom;
 
+import net.minestom.server.extras.optifine.OptifineSupport;
 import xyz.luccboy.noobstom.config.ConfigManager;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -26,15 +27,17 @@ public class NoobStom {
         instance = this;
         this.configManager = new ConfigManager();
 
+        // These properties are passed by NoobCloud when starting the server
         final String address = System.getProperty("address");
         final int port = Integer.parseInt(System.getProperty("port"));
 
         this.minecraftServer = MinecraftServer.init();
         MinecraftServer.setBrandName("NoobStom");
+        OptifineSupport.enable();
         enableProxySupport();
-        handleJoin();
 
         this.minecraftServer.start(address, port);
+        handleJoin();
     }
 
     private void enableProxySupport() {
@@ -48,6 +51,7 @@ public class NoobStom {
         }
     }
 
+    // Modify this method to suit your needs
     private void handleJoin() {
         final InstanceContainer instanceContainer = MinecraftServer.getInstanceManager().createInstanceContainer();
         instanceContainer.setGenerator(unit -> {

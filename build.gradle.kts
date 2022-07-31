@@ -12,7 +12,7 @@ repositories {
 }
 
 dependencies {
-    implementation("com.github.Minestom:Minestom:0db5993bfb") {
+    implementation("com.github.Minestom:Minestom:89a09f326e") {
         exclude("org.jboss.shrinkwrap.resolver", "shrinkwrap-resolver-depchain")
     }
     implementation("org.jboss.shrinkwrap.resolver:shrinkwrap-resolver-impl-maven:3.1.4")
@@ -34,5 +34,4 @@ tasks.withType<JavaCompile> {
 tasks.shadowJar {
     archiveFileName.set("minestom.jar")
     manifest.attributes(Pair("Main-Class", "xyz.luccboy.noobstom.NoobStomLauncher"))
-    //manifest.attributes(Pair("Multi-Release", true))
 }
